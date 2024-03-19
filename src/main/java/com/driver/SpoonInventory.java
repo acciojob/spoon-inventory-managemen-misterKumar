@@ -19,13 +19,15 @@ public class SpoonInventory {
 
     public int retrieveSpoonDetails(String name) {
     	//your code goes here
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid spoon name provided.");
+        }
         if (spoonMap.containsKey(name)) {
             Spoon spoon = spoonMap.get(name);
             System.out.println(spoon.getName() + " has quantity: " + spoon.getQuantity());
             return spoon.getQuantity();
         } else {
-            System.out.println(name + " not found in inventory!");
-            return -1;
+            throw new IllegalArgumentException(name + " not found in inventory!");
         }
     }
 
